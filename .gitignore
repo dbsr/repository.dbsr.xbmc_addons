@@ -1,5 +1,5 @@
 *.py[cod]
-./repository.dbsr.xbmc_addons
+repository.dbsr.xbmc_addons
 
 # C extensions
 *.so
