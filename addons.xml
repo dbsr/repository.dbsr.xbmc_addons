@@ -1,6 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <addons>
-<addon id="plugin.video.percuiro.tacobell" name="Percuiro Taco Bell" version="0.4" provider-name="dbsr">
+<addon id="repository.dbsr.xbmc_addons" name="dbsrs xbmc addon repo" version="1.0.0" provider-name="dbsr">
+    <extension point="xbmc.addon.repository" name="dbsr's xbmc addon repo">
+        <info compressed="false">https://github.com/dbsr/repository.dbsr.xbmc_addons/raw/master/addons.xml</info>
+        <checksum>https://github.com/dbsr/repository.dbsr.xbmc_addons/raw/master/addons.xml.md5</checksum>
+        <datadir zip="true">https://github.com/dbsr/repository.dbsr.xbmc_addons/raw/master/repo</datadir>
+    </extension>
+    <extension point="xbmc.addon.metadata">
+        <summary>install dbsr's addons</summary>
+        <description>download and install addons by dbsr</description>
+        <platform>all</platform>
+    </extension>
+</addon>
+
+<addon id="plugin.video.percuiro.tacobell" name="Percuiro Taco Bell" version="0.5" provider-name="dbsr">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+    <import addon="script.module.xbmcswift2" version="2.4.0"/>
+    <import addon="script.module.urlresolver" version="2.1.0" />
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="addon.py">
+    <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <platform>all</platform>
+    <language></language>
+    <summary>Search and stream media using multiple content providers simultanously</summary>
+    <description>This plugin is useless if you don't have a premium account to resolve the results to playable links</description>
+  </extension>
+</addon>
+
+<addon id="plugin.video.percuiro.tacobell_dev" name="Percuiro Taco Bell" version="0.5" provider-name="dbsr">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
     <import addon="script.module.xbmcswift2" version="2.4.0"/>

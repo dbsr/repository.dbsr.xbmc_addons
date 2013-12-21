@@ -1,16 +1,21 @@
 #!/bin/zsh
-find . -type f -name *.pyc|xargs rm
-for plugin in $(find . -type d -maxdepth 1 -name plugin*)
+find . -type f -name *.pyc|xargs rm 2> /dev/null
+for plugin in $(find . -maxdepth 1 -type d -name 'plugin*')
 do
-    zipfile="${plugin}.zip"
-    new_zipfile="/tmp/${zipfile}"
-    repo_zipfile="./repo/${zipfile}"
-    zip -r $new_zipfile $plugin -x $plugin/.git\* $plugin/tests\*
-    if [[ -n $(diff $new_zipfile $repo_zipfile) ]]
+    plugin=$(basename $plugin)
+    print "processing ${plugin}.."
+    plugin_repo_dir="./repo/${plugin}"
+    ! [[ -e $plugin_repo_dir ]] && mkdir -p $plugin_repo_dir
+    plugin_version=$(grep "${plugin}.*version=" $plugin/addon.xml|grep -o "[0-9.]\{2,\}")
+    plugin_new_zipfile="${plugin_repo_dir}/${plugin}-${plugin_version}.zip"
+    if [[ -e $plugin_new_zipfile ]]
     then
-        mv $new_zipfile $repo_zipfile
-        git add $repo_zipfile
-        git commit -m 'new version'
+      print " > ${plugin_new_zipfile} already exists. Skipping.."
+    else
+      print " > adding new version to repo ${plugin_new_zipfile}.."
+      zip -r $plugin_new_zipfile $plugin -x $plugin/.git\* $plugin/tests\*
+      git add $plugin_new_zipfile
+      git commit -m "version ${plugin_version}"
     fi
 done
 git push 2> /dev/null
