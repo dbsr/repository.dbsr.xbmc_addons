@@ -1,5 +1,5 @@
 *.py[cod]
-./plugin.video.percuiro.tacobell_dev
+./repository.dbsr.xbmc_addons
 
 # C extensions
 *.so
