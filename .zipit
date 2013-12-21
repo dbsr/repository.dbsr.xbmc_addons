@@ -13,4 +13,4 @@ do
         git commit -m 'new version'
     fi
 done
-git push &> /dev/null
+git push 2> /dev/null
