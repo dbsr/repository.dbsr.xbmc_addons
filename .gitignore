@@ -1,4 +1,5 @@
 *.py[cod]
+./plugin.video.percuiro.tacobell_dev
 
 # C extensions
 *.so
