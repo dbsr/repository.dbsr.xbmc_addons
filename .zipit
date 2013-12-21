@@ -1,0 +1,16 @@
+#!/bin/zsh
+find . -type f -name *.pyc|xargs rm
+for plugin in $(find . -type d -maxdepth 1 -name plugin*)
+do
+    zipfile="${plugin}.zip"
+    new_zipfile="/tmp/${zipfile}"
+    repo_zipfile="./repo/${zipfile}"
+    zip -r $new_zipfile $plugin -x $plugin/.git\* $plugin/tests\*
+    if [[ -n $(diff $new_zipfile $repo_zipfile) ]]
+    then
+        mv $new_zipfile $repo_zipfile
+        git add $repo_zipfile
+        git commit -m 'new version'
+    fi
+done
+git push &> /dev/null
