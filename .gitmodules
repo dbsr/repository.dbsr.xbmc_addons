@@ -1,3 +1,6 @@
 [submodule "plugin.video.percuiro.tacobell"]
 	path = plugin.video.percuiro.tacobell
 	url = https://github.com/dbsr/plugin.video.percuiro.tacobell
+[submodule "plugin.video.percuiro.tacobell_dev"]
+	path = plugin.video.percuiro.tacobell_dev
+	url = https://github.com/dbsr/plugin.video.percuiro.tacobell
